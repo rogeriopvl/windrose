@@ -1,0 +1,30 @@
+{
+  "name": "windrose",
+  "version": "1.0.0",
+  "description": "Convert compass degrees into points of the compass and vice versa",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --reporter spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rogeriopvl/node-windrose"
+  },
+  "keywords": [
+    "compass",
+    "points",
+    "cardinal",
+    "degrees",
+    "windrose"
+  ],
+  "author": "rogeriopvl",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rogeriopvl/node-windrose/issues"
+  },
+  "homepage": "https://github.com/rogeriopvl/node-windrose",
+  "devDependencies": {
+    "chai": "^1.10.0",
+    "mocha": "^2.1.0"
+  }
+}
