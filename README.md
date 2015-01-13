@@ -1,4 +1,4 @@
-# Windrose [![Build Status](https://secure.travis-ci.org/rogeriopvl/node-windrose.png?branch=master)](http://travis-ci.org/rogeriopvl/windrose)
+# Windrose [![Build Status](https://secure.travis-ci.org/rogeriopvl/windrose.png?branch=master)](http://travis-ci.org/rogeriopvl/windrose)
 
 ## Getting Started
 
