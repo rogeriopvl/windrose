@@ -21,37 +21,37 @@
 } (this, function () {
     var COMPASS_POINTS = [
         { symbol: 'N', name: 'North' },
-        { symbol: null, name: 'North by East' },
+        { symbol: 'NbE', name: 'North by East' },
         { symbol: 'NNE', name: 'North North East' },
-        { symbol: null, name: 'North East by North' },
+        { symbol: 'NEbN', name: 'North East by North' },
         { symbol: 'NE', name: 'North East' },
-        { symbol: null, name: 'North East by East' },
+        { symbol: 'NEbE', name: 'North East by East' },
         { symbol: 'ENE', name: 'East North East' },
-        { symbol: null, name: 'East by North' },
+        { symbol: 'EbN', name: 'East by North' },
         { symbol: 'E', name: 'East' },
-        { symbol: null, name: 'East by South' },
+        { symbol: 'EbS', name: 'East by South' },
         { symbol: 'ESE', name: 'East South East' },
-        { symbol: null, name: 'South East by East' },
+        { symbol: 'SEbE', name: 'South East by East' },
         { symbol: 'SE', name: 'South East' },
-        { symbol: null, name: 'South East by South' },
+        { symbol: 'SEbS', name: 'South East by South' },
         { symbol: 'SSE', name: 'South South East' },
-        { symbol: null, name: 'South by East' },
+        { symbol: 'SbE', name: 'South by East' },
         { symbol: 'S', name: 'South' },
-        { symbol: null, name: 'South by West' },
+        { symbol: 'SbW', name: 'South by West' },
         { symbol: 'SSW', name: 'South South West' },
-        { symbol: null, name: 'South West by South' },
+        { symbol: 'SWbS', name: 'South West by South' },
         { symbol: 'SW', name: 'South West' },
-        { symbol: null, name: 'South West by West' },
+        { symbol: 'SWbW', name: 'South West by West' },
         { symbol: 'WSW', name: 'West South West' },
-        { symbol: null, name: 'West by South' },
+        { symbol: 'WbS', name: 'West by South' },
         { symbol: 'W', name: 'West' },
-        { symbol: null, name: 'West by North' },
+        { symbol: 'WbN', name: 'West by North' },
         { symbol: 'WNW', name: 'West North West' },
-        { symbol: null, name: 'North West by West' },
+        { symbol: 'NWbW', name: 'North West by West' },
         { symbol: 'NW', name: 'North West' },
-        { symbol: null, name: 'North West by North' },
+        { symbol: 'NWbN', name: 'North West by North' },
         { symbol: 'NNW', name: 'North North West' },
-        { symbol: null, name: 'North by West' }
+        { symbol: 'NbW', name: 'North by West' }
     ];
 
     var Windrose = {
@@ -77,13 +77,13 @@
 
         /**
          * Returns the degrees of a given compass point name or symbol
-         * @param {string} name - the name or symbol of a compass point
+         * @param {string} name - the name or symbol of a compass point (case sensitive)
          * @return {number} the degrees of the given compass point
          */
         getDegrees: function (name) {
             var found;
             COMPASS_POINTS.forEach(function (item, idx) {
-                if (name === item.name || (item.symbol && name === item.symbol)) {
+                if (name === item.name || name === item.symbol) {
                     found = idx * 11.25;
                     return;
                 }
