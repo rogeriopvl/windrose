@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Windrose Example</title>
+</head>
+<body>
+    <h1>Windrose</h1>
+    <h3>Degrees to Compass Points</h3>
+    <input type="text" id="d2p" placeholder="ex. 22.50">
+    <input type="text" id="d2p_result" disabled>
+
+    <h3>Compass Points to Degrees</h3>
+    <input type="text" id="p2d" placeholder="ex. South West or SW">
+    <input type="text" id="p2d_result" disabled>
+
+    <script type="text/javascript" src="../index.js"></script>
+    <script type="text/javascript">
+        document.querySelector('#d2p').addEventListener('keyup', function (ev) {
+            var res = Windrose.getPoint(this.value);
+            document.querySelector('#d2p_result').value = res ? res.name : 'invalid';
+        });
+
+        document.querySelector('#p2d').addEventListener('keyup', function (ev) {
+            document.querySelector('#p2d_result').value =
+                Windrose.getDegrees(this.value) || 'invalid';
+        });
+    </script>
+</body>
+</html>
