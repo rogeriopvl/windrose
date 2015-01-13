@@ -4,7 +4,7 @@
  * This is a simple module that converts compass degress into compass points
  * and points to degrees. There are 32 points in the compass, and each one
  * has a length of 11.25 degrees. This is the value that is used to
- * calculate the degrees.
+ * calculate the points.
  *
  * @author rogeriopvl <http://github.com/rogeriopvl>
  * @license MIT
