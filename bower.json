@@ -1,0 +1,33 @@
+{
+  "name": "windrose",
+  "main": "windrose.js",
+  "version": "1.1.0",
+  "homepage": "https://github.com/rogeriopvl/windrose",
+  "authors": [
+    "rogeriopvl <rogeriopvl@gmail.com>"
+  ],
+  "description": "Module that converts compass degrees into compass points and vice versa",
+  "moduleType": [
+    "amd",
+    "globals",
+    "node"
+  ],
+  "keywords": [
+    "compass",
+    "degrees",
+    "wind",
+    "geo",
+    "azimuth",
+    "cardinal",
+    "ordinal",
+    "points"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
