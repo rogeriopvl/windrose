@@ -1,5 +1,5 @@
 var expect = require('chai').expect;
-var Windrose = require('../index.js');
+var Windrose = require('../windrose.js');
 
 describe('Windrose', function () {
 
