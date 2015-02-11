@@ -38,11 +38,23 @@ It also supports AMD.
 
 ## API
 
-### Windrose.getPoint(degrees)
+### Windrose.getPoint(degrees, opts)
 
 * `degrees` (number) the degrees to convert to point (only valid if >= 0 or <= 360)
+* `opts` (object) options hash [optional]
+    * `depth` (integer) the depth of search it can be a value between 0 and 3.
 
-### Windrose.getDegrees(name)
+    With value `0`, it only returns the 4 main compass points (N, E, S, W).
+
+    With value `1` returns the main 8 compass points (N, NE, E, SE, S, SW, W, NW).
+
+    With value `2` returns the main 16 compass points (N, NNE, NE, ENE, E, ESE, SE, SSE, S, SSW, SW, WSW, W, WNW, NW, NNW).
+
+    With value `3` returns the 32 points of the compass.
+
+    Any other value will return `undefined`.
+
+### Windrose.getDegrees(name, opts)
 
 * `name` (string) the name or symbol of the compass point to convert to degrees
 

@@ -2,9 +2,22 @@
  * Windrose
  *
  * This is a simple module that converts compass degress into compass points
- * and points to degrees. There are 32 points in the compass, and each one
- * has a length of 11.25 degrees. This is the value that is used to
- * calculate the points.
+ * and points to degrees.
+ *
+ * You can pass an { depth: ... } hash to the getPoint.
+ *
+ * Passing a depth: 0 will limit the search to the 4
+ * main compass points: N, E, S, W.
+ *
+ * Passing a depth: 1 will limit the search to the 8
+ * main compass points: N, NE, E, SE, S, SW, W, NW
+ *
+ * Passing a depth: 2 will limit the search to the 16
+ * main compass points: N, NNE, NE, ENE, E, ESE, SE, SSE,
+ * S, SSW, SW, WSW, W, WNW, NW, NNW.
+ *
+ * Passing a depth: 3 (default) will do the search for the
+ * 32 points of the compass.
  *
  * @author rogeriopvl <http://github.com/rogeriopvl>
  * @license MIT
@@ -19,39 +32,40 @@
         root.Windrose = factory();
     }
 } (this, function () {
+    var DEPTHS_AREA = [ 90, 45, 22.5, 11.25 ];
     var COMPASS_POINTS = [
-        { symbol: 'N', name: 'North' },
-        { symbol: 'NbE', name: 'North by East' },
-        { symbol: 'NNE', name: 'North North East' },
-        { symbol: 'NEbN', name: 'North East by North' },
-        { symbol: 'NE', name: 'North East' },
-        { symbol: 'NEbE', name: 'North East by East' },
-        { symbol: 'ENE', name: 'East North East' },
-        { symbol: 'EbN', name: 'East by North' },
-        { symbol: 'E', name: 'East' },
-        { symbol: 'EbS', name: 'East by South' },
-        { symbol: 'ESE', name: 'East South East' },
-        { symbol: 'SEbE', name: 'South East by East' },
-        { symbol: 'SE', name: 'South East' },
-        { symbol: 'SEbS', name: 'South East by South' },
-        { symbol: 'SSE', name: 'South South East' },
-        { symbol: 'SbE', name: 'South by East' },
-        { symbol: 'S', name: 'South' },
-        { symbol: 'SbW', name: 'South by West' },
-        { symbol: 'SSW', name: 'South South West' },
-        { symbol: 'SWbS', name: 'South West by South' },
-        { symbol: 'SW', name: 'South West' },
-        { symbol: 'SWbW', name: 'South West by West' },
-        { symbol: 'WSW', name: 'West South West' },
-        { symbol: 'WbS', name: 'West by South' },
-        { symbol: 'W', name: 'West' },
-        { symbol: 'WbN', name: 'West by North' },
-        { symbol: 'WNW', name: 'West North West' },
-        { symbol: 'NWbW', name: 'North West by West' },
-        { symbol: 'NW', name: 'North West' },
-        { symbol: 'NWbN', name: 'North West by North' },
-        { symbol: 'NNW', name: 'North North West' },
-        { symbol: 'NbW', name: 'North by West' }
+        { symbol: 'N', name: 'North', depth: 0 },
+        { symbol: 'NbE', name: 'North by East', depth: 3 },
+        { symbol: 'NNE', name: 'North North East', depth: 2 },
+        { symbol: 'NEbN', name: 'North East by North', depth: 3 },
+        { symbol: 'NE', name: 'North East', depth: 1 },
+        { symbol: 'NEbE', name: 'North East by East', depth: 3 },
+        { symbol: 'ENE', name: 'East North East', depth: 2 },
+        { symbol: 'EbN', name: 'East by North', depth: 3 },
+        { symbol: 'E', name: 'East', depth: 0 },
+        { symbol: 'EbS', name: 'East by South', depth: 3 },
+        { symbol: 'ESE', name: 'East South East', depth: 2 },
+        { symbol: 'SEbE', name: 'South East by East', depth: 3 },
+        { symbol: 'SE', name: 'South East', depth: 1 },
+        { symbol: 'SEbS', name: 'South East by South', depth: 3 },
+        { symbol: 'SSE', name: 'South South East', depth: 2 },
+        { symbol: 'SbE', name: 'South by East', depth: 3 },
+        { symbol: 'S', name: 'South', depth: 0 },
+        { symbol: 'SbW', name: 'South by West', depth: 3 },
+        { symbol: 'SSW', name: 'South South West', depth: 2 },
+        { symbol: 'SWbS', name: 'South West by South', depth: 3 },
+        { symbol: 'SW', name: 'South West', depth: 1 },
+        { symbol: 'SWbW', name: 'South West by West', depth: 3 },
+        { symbol: 'WSW', name: 'West South West', depth: 2 },
+        { symbol: 'WbS', name: 'West by South', depth: 3 },
+        { symbol: 'W', name: 'West', depth: 0 },
+        { symbol: 'WbN', name: 'West by North', depth: 3 },
+        { symbol: 'WNW', name: 'West North West', depth: 2 },
+        { symbol: 'NWbW', name: 'North West by West', depth: 3 },
+        { symbol: 'NW', name: 'North West', depth: 1 },
+        { symbol: 'NWbN', name: 'North West by North', depth: 3 },
+        { symbol: 'NNW', name: 'North North West', depth: 2 },
+        { symbol: 'NbW', name: 'North by West', depth: 3 }
     ];
 
     var Windrose = {
@@ -60,19 +74,26 @@
          * When the degrees do not match directly with a point,
          * the number is rounded first
          * @param {number} degrees - the degrees in the compass to convert
+         * @param {object} opts - (optional) hash containing options
+         *                 opts.depth - valid from 0 to 3
          * @return {object} the compass point of the given degrees. If degrees are
          *                  invalid (< 0 || > 360), then undefined is returned.
          */
-        getPoint: function (degrees) {
+        getPoint: function (degrees, opts) {
             if (degrees < 0 || degrees > 360) { return; }
 
-            var idx = Math.round(degrees / 11.25);
+            opts = opts || {};
+            opts.depth = opts.hasOwnProperty('depth') ? opts.depth : 3;
+
+            var idx = Math.round(degrees / DEPTHS_AREA[opts.depth]);
 
             // 360 === 0 aka North
             if (idx === COMPASS_POINTS.length) {
                 idx = 0;
             }
-            return COMPASS_POINTS[idx];
+            return COMPASS_POINTS.filter(function (pt) {
+                return pt.depth <= opts.depth;
+            })[idx];
         },
 
         /**
@@ -84,7 +105,7 @@
             var found;
             COMPASS_POINTS.forEach(function (item, idx) {
                 if (name === item.name || name === item.symbol) {
-                    found = idx * 11.25;
+                    found = idx * DEPTHS_AREA[3];
                     return;
                 }
             });
