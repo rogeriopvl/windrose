@@ -84,12 +84,14 @@ describe('Windrose', function () {
     describe('getDegrees', function () {
         it('should return 0 when passing North or N', function (done) {
             var res = Windrose.getDegrees('North');
-            expect(res).to.be.a('number');
-            expect(res).to.equal(0);
+            expect(res).to.be.an('object');
+            expect(res.value).to.equal(0);
 
             var res2 = Windrose.getDegrees('N');
-            expect(res2).to.be.a('number');
-            expect(res2).to.equal(0);
+            expect(res2).to.be.an('object');
+            expect(res2.value).to.equal(0);
+            expect(res2.min).to.equal(354.375);
+            expect(res2.max).to.equal(5.625);
 
             done();
         });
@@ -101,31 +103,37 @@ describe('Windrose', function () {
             done();
         });
 
-        xit('should return 270 when passing W point with 0 depth', function (done) {
+        it('should return 270 when passing W point with 0 depth', function (done) {
           var res = Windrose.getDegrees('W', { depth: 0 });
-          expect(res).to.be.a('number');
-          expect(res).to.equal(270);
+          expect(res).to.be.an('object');
+          expect(res.value).to.equal(270);
+          expect(res.min).to.equal(225)
+          expect(res.max).to.equal(315)
 
           done();
         });
 
-        xit('should return 225 when passing SW point with 1 depth', function (done) {
+        it('should return 225 when passing SW point with 1 depth', function (done) {
           var res = Windrose.getDegrees('SW', { depth: 1 });
-          expect(res).to.be.a('number');
-          expect(res).to.equal(225);
+          expect(res).to.be.an('object');
+          expect(res.value).to.equal(225);
+          expect(res.min).to.equal(202.5)
+          expect(res.max).to.equal(247.5)
 
           done();
         });
 
-        xit('should return 292.5 when passing WNW point with 2 depth', function (done) {
+        it('should return 292.5 when passing WNW point with 2 depth', function (done) {
           var res = Windrose.getDegrees('WNW', { depth: 2 });
-          expect(res).to.be.a('number');
-          expect(res).to.equal(292.5);
+          expect(res).to.be.an('object');
+          expect(res.value).to.equal(292.5);
+          expect(res.min).to.equal(281.25)
+          expect(res.max).to.equal(303.75)
 
           done();
         });
 
-        xit('should return undefined when passing invalid depth', function (done) {
+        it('should return undefined when passing invalid depth', function (done) {
           var res = Windrose.getDegrees('WNW', { depth: 9 });
           expect(res).to.be.an('undefined');
 

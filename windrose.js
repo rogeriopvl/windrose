@@ -4,7 +4,7 @@
  * This is a simple module that converts compass degress into compass points
  * and points to degrees.
  *
- * You can pass an { depth: ... } hash to the getPoint.
+ * You can pass an { depth: ... } hash to the methods.
  *
  * Passing a depth: 0 will limit the search to the 4
  * main compass points: N, E, S, W.
@@ -99,17 +99,35 @@
         /**
          * Returns the degrees of a given compass point name or symbol
          * @param {string} name - the name or symbol of a compass point (case sensitive)
-         * @return {number} the degrees of the given compass point
+         * @param {object} opts - (optional) hash containing options
+         *                 opts.depth - valid from 0 to 3
+         * @return {object} the degrees and range of the given compass point
+         *                  (according to the given depth)
          */
-        getDegrees: function (name) {
-            var found;
+        getDegrees: function (name, opts) {
+            var found, min, max;
+            opts = opts || {};
+            opts.depth = opts.hasOwnProperty('depth') ? opts.depth : 3;
+
+            if (opts.depth < 0 || opts.depth > 3) { return; }
+
             COMPASS_POINTS.forEach(function (item, idx) {
                 if (name === item.name || name === item.symbol) {
                     found = idx * DEPTHS_AREA[3];
                     return;
                 }
             });
-            return found;
+
+            min = found - (DEPTHS_AREA[opts.depth] / 2);
+            max = found + (DEPTHS_AREA[opts.depth] / 2);
+
+            if (typeof found === 'undefined') { return; }
+
+            return {
+              min: min >= 0 ? min : (360 + min),
+              value: found,
+              max: max <= 360 ? max : (max - 360)
+            };
         }
     };
     return Windrose;
