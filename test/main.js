@@ -72,6 +72,14 @@ describe('Windrose', function () {
           done();
         });
 
+        it('should return N when passing 359 degrees with 2 depth', function (done) {
+          var res = Windrose.getPoint(359, { depth: 2 });
+          expect(res).to.be.an('object');
+          expect(res.symbol).to.equal('N');
+
+          done();
+        });
+
         it('should return undefined when passing invalid depth', function (done) {
           var res = Windrose.getPoint(15, { depth: 0 });
           expect(res).to.be.an('object');
