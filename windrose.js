@@ -85,15 +85,17 @@
             opts = opts || {};
             opts.depth = opts.hasOwnProperty('depth') ? opts.depth : 3;
 
-            var idx = Math.round(degrees / DEPTHS_AREA[opts.depth]);
+            var idx = Math.round(degrees / DEPTHS_AREA[opts.depth]),
+                _compass_points = COMPASS_POINTS.filter(function(pt)
+                {
+                    return pt.depth <= opts.depth;
+                });
 
             // 360 === 0 aka North
-            if (idx === COMPASS_POINTS.length) {
+            if (idx === _compass_points.length) {
                 idx = 0;
             }
-            return COMPASS_POINTS.filter(function (pt) {
-                return pt.depth <= opts.depth;
-            })[idx];
+            return _compass_points[idx];
         },
 
         /**
