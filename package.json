@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/rogeriopvl/node-windrose"
+    "url": "https://github.com/rogeriopvl/windrose"
   },
   "keywords": [
     "compass",
@@ -23,9 +23,9 @@
   "author": "rogeriopvl",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/rogeriopvl/node-windrose/issues"
+    "url": "https://github.com/rogeriopvl/windrose/issues"
   },
-  "homepage": "https://github.com/rogeriopvl/node-windrose",
+  "homepage": "https://github.com/rogeriopvl/windrose",
   "devDependencies": {
     "chai": "^1.10.0",
     "mocha": "^2.1.0"
