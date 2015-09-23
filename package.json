@@ -1,6 +1,6 @@
 {
   "name": "windrose",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Convert compass degrees into points of the compass and vice versa",
   "main": "windrose.js",
   "scripts": {
