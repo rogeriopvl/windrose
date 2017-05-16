@@ -1,5 +1,7 @@
 # Windrose [![Build Status](https://secure.travis-ci.org/rogeriopvl/windrose.png?branch=master)](http://travis-ci.org/rogeriopvl/windrose)
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/rogeriopvl/windrose.svg)](https://greenkeeper.io/)
+
 ## Info
 
 Windrose is a javascript browser/node module that converts compass degrees into compass points and vice versa.
