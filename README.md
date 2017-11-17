@@ -20,17 +20,19 @@ Windrose is a javascript browser/node module that converts compass degrees into 
 
 ### Node
 
-    var Windrose = require('windrose');
+```javascript
+var Windrose = require('windrose');
 
-    Windrose.getPoint(225);       /* returns { symbol: 'SW', name: 'South West', depth: 1 } */
-    Windrose.getPoint(236.25);    /* returns { symbol: SWbW, name: 'South West by West', depth: 3 } */
+Windrose.getPoint(225);       /* returns { symbol: 'SW', name: 'South West', depth: 1 } */
+Windrose.getPoint(236.25);    /* returns { symbol: SWbW, name: 'South West by West', depth: 3 } */
 
-    Windrose.getPoint(236.25, { depth: 0 });    /* returns { symbol: 'W', name: 'West', depth: 0 } */
+Windrose.getPoint(236.25, { depth: 0 });    /* returns { symbol: 'W', name: 'West', depth: 0 } */
 
-    Windrose.getDegrees('S');     /* returns { min: 174.375, value: 180, max: 185.625 } */
-    Windrose.getDegrees('South'); /* returns { min: 174.375, value: 180, max: 185.625 } */
+Windrose.getDegrees('S');     /* returns { min: 174.375, value: 180, max: 185.625 } */
+Windrose.getDegrees('South'); /* returns { min: 174.375, value: 180, max: 185.625 } */
 
-    Windrose.getDegrees('S', { depth: 0 });     /* returns { min: 135, value: 180, max: 225 } */
+Windrose.getDegrees('S', { depth: 0 });     /* returns { min: 135, value: 180, max: 225 } */
+```
 
 ### Browser
 
