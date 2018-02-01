@@ -60,7 +60,7 @@
         { symbol: 'NEbE¾E', name: 'North East by East three quarters East', depth: 5 },
         { symbol: 'ENE', name: 'East North East', depth: 2 },
         { symbol: 'ENE¼E', name: 'East North East quarter East', depth: 5 },
-        { symbol: 'ENE½E', name: 'East North East half East', depth: 4 }'
+        { symbol: 'ENE½E', name: 'East North East half East', depth: 4 },
         { symbol: 'ENE¾E', name: 'East North East three quarter East', depth: 5 },
         { symbol: 'EbN', name: 'East by North', depth: 3 },
         { symbol: 'E¾N', name: 'East three quarters North', depth: 5 },
