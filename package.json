@@ -4,7 +4,8 @@
   "description": "Convert compass degrees into points of the compass and vice versa",
   "main": "windrose.js",
   "scripts": {
-    "test": "mocha --reporter spec"
+    "lint": "eslint .",
+    "test": "npm run lint && mocha --reporter spec"
   },
   "repository": {
     "type": "git",
@@ -28,6 +29,8 @@
   "homepage": "https://github.com/rogeriopvl/windrose",
   "devDependencies": {
     "chai": "^4.0.0",
-    "mocha": "^5.0.0"
+    "mocha": "^5.0.0",
+    "prettier": "^1.14.2",
+    "eslint": "^5.5.0"
   }
 }
