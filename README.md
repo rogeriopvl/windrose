@@ -60,13 +60,17 @@ It also supports AMD.
 
     With value `3` returns the 32 points of the compass.
 
+    With value `4` returns the 64 points of the compass.
+
+    With value `5` returns the 128 points of the compass.
+
     Any other value will return `undefined`.
 
 ### Windrose.getDegrees(name, opts)
 
 * `name` (string) the name or symbol of the compass point to convert to degrees
 * `opts` (object) options hash [optional]
-    * `depth` (integer) the depth of search it can be a value between 0 and 3.
+    * `depth` (integer) the depth of search it can be a value between 0 and 5.
 
 ## License
 Copyright (c) 2015 Rogério Vicente. Licensed under the MIT license.
