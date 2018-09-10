@@ -32,6 +32,7 @@
         root.Windrose = factory();
     }
 } (this, function () {
+    var DEFAULT_DEPTH = 3;
     var DEPTHS_AREA = [ 90, 45, 22.5, 11.25, 5.625, 2.8125 ];
     var COMPASS_POINTS = [
         { symbol: 'N', name: 'North', depth: 0 },
@@ -179,7 +180,7 @@
             if (degrees < 0 || degrees > 360) { return; }
 
             opts = opts || {};
-            opts.depth = opts.hasOwnProperty('depth') ? opts.depth : 3;
+            opts.depth = opts.hasOwnProperty('depth') ? opts.depth : DEFAULT_DEPTH;
 
             var idx = Math.round(degrees / DEPTHS_AREA[opts.depth]);
             var _compass_points = COMPASS_POINTS.filter(function (pt) {
@@ -204,13 +205,13 @@
         getDegrees: function (name, opts) {
             var found, min, max;
             opts = opts || {};
-            opts.depth = opts.hasOwnProperty('depth') ? opts.depth : 3;
+            opts.depth = opts.hasOwnProperty('depth') ? opts.depth : DEFAULT_DEPTH;
 
-            if (opts.depth < 0 || opts.depth > 3) { return; }
+            if (opts.depth < 0 || opts.depth > 5) { return; }
 
             COMPASS_POINTS.forEach(function (item, idx) {
                 if (name === item.name || name === item.symbol) {
-                    found = idx * DEPTHS_AREA[3];
+                    found = idx * DEPTHS_AREA[DEPTHS_AREA.length - 1];
                     return;
                 }
             });
