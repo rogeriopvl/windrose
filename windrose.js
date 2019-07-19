@@ -34,6 +34,9 @@
 })(this, function() {
   var DEFAULT_DEPTH = 3;
   var DEPTHS_AREA = [90, 45, 22.5, 11.25, 5.625, 2.8125];
+  var DEFAULT_OPTS = {
+    depth: DEFAULT_DEPTH
+  };
   var COMPASS_POINTS = [
     { symbol: 'N', name: 'North', depth: 0 },
     { symbol: 'N¼E', name: 'North quarter East', depth: 5 },
@@ -201,8 +204,7 @@
         return;
       }
 
-      opts = opts || {};
-      opts.depth = opts.hasOwnProperty('depth') ? opts.depth : DEFAULT_DEPTH;
+      opts = Object.assign({}, DEFAULT_OPTS, Object(opts));
 
       var idx = Math.round(degrees / DEPTHS_AREA[opts.depth]);
       var _compass_points = COMPASS_POINTS.filter(function(pt) {
@@ -226,8 +228,8 @@
      */
     getDegrees: function(name, opts) {
       var found, min, max;
-      opts = opts || {};
-      opts.depth = opts.hasOwnProperty('depth') ? opts.depth : DEFAULT_DEPTH;
+
+      opts = Object.assign({}, DEFAULT_OPTS, Object(opts));
 
       if (opts.depth < 0 || opts.depth > 5) {
         return;
