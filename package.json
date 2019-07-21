@@ -29,7 +29,7 @@
   "homepage": "https://github.com/rogeriopvl/windrose",
   "devDependencies": {
     "chai": "^4.2.0",
-    "eslint": "^5.14.1",
+    "eslint": "^6.1.0",
     "mocha": "^6.0.1",
     "prettier": "^1.16.4"
   }
